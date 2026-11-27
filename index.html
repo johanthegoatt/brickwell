@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brickwell — brick &amp; block wall calculator</title>
+<meta name="description" content="Put in the wall size and how it's built, and Brickwell works out the bricks or blocks to buy, the mortar, the sand and cement, and draws the wall to scale. Runs in your browser, nothing uploaded." />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%238a3b2b'/%3E%3Cg fill='%23c15b43'%3E%3Crect x='5' y='6' width='9' height='5' rx='1'/%3E%3Crect x='16' y='6' width='11' height='5' rx='1'/%3E%3Crect x='5' y='13' width='6' height='5' rx='1'/%3E%3Crect x='13' y='13' width='14' height='5' rx='1'/%3E%3Crect x='5' y='20' width='11' height='5' rx='1'/%3E%3Crect x='18' y='20' width='9' height='5' rx='1'/%3E%3C/g%3E%3C/svg%3E" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <h1>Brickwell</h1>
+  <p class="lede">How many bricks or blocks to buy for a wall, and the mortar to go with them. Put in the wall size and how it's built, and it works out the units, the sand and cement, and draws the courses to scale.</p>
+</header>
+
+<main class="wrap">
+  <form id="form" class="panel" autocomplete="off">
+    <fieldset>
+      <legend>The wall</legend>
+      <div class="grid">
+        <label>Length<input id="length" inputmode="decimal" placeholder="5" /></label>
+        <label>Height<input id="height" inputmode="decimal" placeholder="2.4" /></label>
+        <label>Measured in
+          <select id="unit"><option value="m" selected>metres</option><option value="ft">feet</option><option value="cm">cm</option></select>
+        </label>
+      </div>
+      <p class="hint">A course of bricks is 75 mm tall, a course of blocks 225 mm, so ten brick courses is about 750 mm if you're guessing the height.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>How it's built</legend>
+      <div class="grid">
+        <label>Wall type
+          <select id="type">
+            <option value="half" selected>Half-brick (single skin)</option>
+            <option value="one">One-brick (double skin)</option>
+            <option value="block">Block wall</option>
+          </select>
+        </label>
+        <label>Mortar mix
+          <select id="mix">
+            <option value="1:4">1:4 (strong)</option>
+            <option value="1:5" selected>1:5 (general)</option>
+            <option value="1:6">1:6 (soft)</option>
+          </select>
+        </label>
+      </div>
+      <p class="hint">A half-brick wall is one brick thick, the usual garden or single-skin wall. A one-brick wall is two skins. A standard block is 440 × 215 mm.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Allowances <span class="opt">(optional)</span></legend>
+      <div class="grid">
+        <label>Openings (m²)<input id="openingsM2" inputmode="decimal" placeholder="0" /></label>
+        <label>Spare margin (%)<input id="waste" inputmode="decimal" placeholder="5" /></label>
+      </div>
+      <p class="hint">Add up the doors and windows into one square-metre figure and Brickwell takes them off the wall. The spare margin covers cuts and breakages; 5% is usual.</p>
+    </fieldset>
+  </form>
+
+  <section id="out" class="panel out" aria-live="polite"></section>
+</main>
+
+<div id="red-dock" class="red-dock">
+  <button id="red" class="red" data-mood="calm" aria-describedby="red-bubble" type="button" title="Red the brick">
+    <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+      <rect x="10" y="20" width="44" height="26" rx="4" fill="#c15b43"/>
+      <rect x="10" y="20" width="44" height="26" rx="4" fill="none" stroke="#8a3b2b" stroke-width="2"/>
+      <path d="M10 33 H54 M32 20 V33 M21 33 V46 M43 33 V46" stroke="#e7cdb0" stroke-width="1.6" fill="none" opacity="0.7"/>
+      <circle class="eye" cx="26" cy="28" r="3" fill="#2b140e"/>
+      <circle class="eye" cx="38" cy="28" r="3" fill="#2b140e"/>
+      <path class="mouth" d="M26 40 q6 4 12 0" stroke="#2b140e" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+  </button>
+  <div id="red-bubble" class="red-bubble" role="status" aria-live="polite"></div>
+  <button id="red-hide" class="red-hide" type="button" aria-label="Hide Red">×</button>
+</div>
+
+<footer class="foot">
+  <p>Planning figures to the common UK merchant and trade guidance (Travis Perkins, Brickhunter, Engineering ToolBox) and the standard metric brick (215 × 102.5 × 65 mm) and block (440 × 215 mm) sizes. A buying guide only; a structural or retaining wall needs an engineer's design. Runs entirely in your browser.</p>
+</footer>
+
+<script src="src/core.js"></script>
+<script src="src/app.js"></script>
+<script src="src/red.js"></script>
+</body>
+</html>
