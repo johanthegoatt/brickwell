@@ -1,0 +1,10 @@
+{
+  "name": "brickwell",
+  "version": "0.1.0",
+  "private": true,
+  "description": "How many bricks or blocks to buy for a wall, and the mortar, sand and cement to go with them, from the wall size and how it's built. Runs in the browser, nothing uploaded. With Red the brick.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
